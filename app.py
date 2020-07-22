@@ -45,7 +45,7 @@ def add_product():
                            UnitPrice=request.json['UnitPrice'], UnitsInStock=request.json['UnitsInStock'], UnitsOnOrder=request.json['UnitsOnOrder'], ReorderLevel=request.json['ReorderLevel'])
     db.session.add(new_product)
     db.session.commit()
-    return "Added!"
+    return "Successfully added product"
 
 
 @app.route('/product/<id>', methods=['GET'])
@@ -116,7 +116,7 @@ def add_customer():
                              City=request.json['City'], Region=request.json['Region'], PostalCode=request.json['PostalCode'], Fax=request.json['Fax'], Phone=request.json['Phone'], Country=request.json['Country'])
     db.session.add(new_customer)
     db.session.commit()
-    return "Added Customer!"
+    return "Successfully Added the Customer!"
 
 
 @app.route('/customer/update/<id>', methods=['PUT'])
