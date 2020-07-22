@@ -99,4 +99,4 @@ The following RESTful API implements CURD operations on `Northwind` dataset. A d
 ```
 ### Tech Stack:
 
-![Image](./extras/logos/python.png) | ![Image](extras/logos/flask.png) | ![Image](./extras/logos/flask-sqlalchemy-logo.png) | ![Image](./extras/logos/mysql.png) | ![Image](extras/logos/postman.png)
+ ![Image](extras/logos/flask.png) | ![Image](./extras/logos/flask-sqlalchemy-logo.png) | ![Image](./extras/logos/mysql.png) | ![Image](extras/logos/postman.png)
