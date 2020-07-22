@@ -15,7 +15,7 @@ class MyJSONEncoder(flask.json.JSONEncoder):
 
 
 app.json_encoder = MyJSONEncoder
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/final'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/northwind_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
