@@ -1,6 +1,6 @@
 # Assignment Task - Intern@DataGorkr
 
->  [Section 1](#1-environment-setup-and-data-loading) | [Section 2](#2-working-with-data-and-sql) | [Section 3](#3-restful-api---python-flask-and-sql-alchemy) | [Endpoints](#endpoints) | [API-Documentation](#api-documentation) | [Directory Tree](#directory-tree) | [TechStack](#tech-stack)
+>  [Section 1](#1-environment-setup-and-data-loading) | [Section 2](#2-working-with-data-and-sql) | [Section 3](#3-restful-api---python-flask-and-sql-alchemy) | [Endpoints](#endpoints) | [API-Documentation](#api-documentation) | [Directory Tree](#directory-tree) | [TechStack](#tech-stack) | [Task Details](#task-details)
 
 ## 1. Environment setup and data loading.
 
@@ -62,9 +62,18 @@ $ pipenv install
 # Run Server (http://localhst:5000)
 python app.py
 ```
+> Known issues with python3.x:
+
+It is observed that `mysqlclient` will fail to install through `pipenv` when using `python3.x`. This could be resolved using the following:
+
+```
+$ sudo apt-get install python3.7-dev libmysqlclient-dev libssl-dev
+$ pipenv install
+```
+
 ### API Documentation
 
-The following RESTful API implements CURD operations on `Northwind` dataset. A detailed documentation is avaiable [here](dumm.com).
+The following RESTful API implements CURD operations on [`Northwind`](https://documenter.getpostman.com/view/12122001/T1DnidZm?version=latest) dataset. A detailed documentation is avaiable [here](https://documenter.getpostman.com/view/12122001/T1DnidZm).
 
 
 ### Endpoints
@@ -90,13 +99,26 @@ The following RESTful API implements CURD operations on `Northwind` dataset. A d
 .
 ├── app.py
 ├── extras
+│   ├── logos
 ...
+│   ├── mysql.sql
+│   ├── northwind-er-relationship.png
+│   ├── northwind files
+...
+│   ├── taskdetails.docx
+│   └── test.json
 ├── Pipfile
 ├── Pipfile.lock
-└── README.md
+├── README.md
+├── Sec1.txt
+└── Sec2.txt
 
-1 directory, 7 files
+3 directories, 26 files
 ```
 ### Tech Stack:
 
  ![Image](extras/logos/flask.png) | ![Image](extras/logos/postman.png) | ![Image](./extras/logos/flask-sqlalchemy-logo.png) | ![Image](./extras/logos/mysql.png) 
+
+### Task Details:
+
+Task details can be found at `./extras/taskdetails.docx`. 

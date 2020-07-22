@@ -165,5 +165,11 @@ def order_history(id):
     return flask.jsonify(listing)
 
 
+@app.route('/', methods=['GET'])
+def base_route():
+    URL = "https://documenter.getpostman.com/view/12122001/T1DnidZm"
+    return f"Welcome! This might not be the page you are looking for, learn the functionality of this API at {URL}"
+
+
 if __name__ == "__main__":
     app.run(debug=True, port=5000, host='0.0.0.0')
