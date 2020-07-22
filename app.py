@@ -8,18 +8,23 @@ app = Flask(__name__)
 
 
 class MyJSONEncoder(flask.json.JSONEncoder):
+    ''' Custom JSONEncoder that will help flask.jsonify to avoid TypeError for JSON serializing Decimal values from Database results. '''
+
     def default(self, obj):
         if isinstance(obj, decimal.Decimal):
             return str(obj)  # Convert decimal instances to strings.
         return super(MyJSONEncoder, self).default(obj)
 
 
+# Sets json_encoder to my custom class MyJSONEncoder.
 app.json_encoder = MyJSONEncoder
+# DatabaseURI for mysql installed on system.
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:root@localhost/northwind_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
+''' The following code block automaps the SQL Alchemy without defining any models with pre existing MySql database on the server '''
 base = automap_base()
 base.prepare(db.engine, reflect=True)
 Products = base.classes.Products
@@ -29,6 +34,7 @@ Orders = base.classes.Orders
 
 @app.route('/products', methods=['GET'])
 def products():
+    ''' Lists all the produts '''
     results = db.session.query(Products).all()
     listing = []
     for r in results:
@@ -41,6 +47,7 @@ def products():
 
 @app.route('/product/add', methods=['POST'])
 def add_product():
+    '''Adds entry into Products table of the database.'''
     new_product = Products(ProductID=request.json['ProductID'], ProductName=request.json['ProductName'], SupplierID=request.json['SupplierID'], CategoryID=request.json['CategoryID'], Discontinued=request.json['Discontinued'], QuantityPerUnit=request.json['QuantityPerUnit'],
                            UnitPrice=request.json['UnitPrice'], UnitsInStock=request.json['UnitsInStock'], UnitsOnOrder=request.json['UnitsOnOrder'], ReorderLevel=request.json['ReorderLevel'])
     db.session.add(new_product)
@@ -50,6 +57,7 @@ def add_product():
 
 @app.route('/product/<id>', methods=['GET'])
 def search_product(id):
+    '''Searches product using ProductID'''
     results = db.session.query(Products).get(id)
     if results == None:
         return "Record Not Found"
@@ -60,6 +68,7 @@ def search_product(id):
 
 @app.route('/product/update/<id>', methods=['PUT'])
 def update_product(id):
+    '''Product update is performed here by referencing desired product by it ProductID'''
     product = db.session.query(Products).get(id)
     if product == None:
         return "Record Not Found"
@@ -81,6 +90,7 @@ def update_product(id):
 
 @app.route('/product/remove/<id>', methods=['DELETE'])
 def remove_product(id):
+    '''This removes the entry in the table by referencing with CustomerID'''
     product = db.session.query(Products).get(id)
     if product == None:
         return "Record Not Found"
@@ -91,6 +101,7 @@ def remove_product(id):
 
 @app.route('/customers', methods=['GET'])
 def customers():
+    '''Lists all the customers in json '''
     results = db.session.query(Customers).all()
     listing = []
     for r in results:
@@ -102,6 +113,7 @@ def customers():
 
 @app.route('/customer/<id>', methods=['GET'])
 def search_customer(id):
+    '''Search a particular customer entry by means of CustomerID'''
     results = db.session.query(Customers).get(id)
     if results == None:
         return "Record Not Found"
@@ -112,6 +124,7 @@ def search_customer(id):
 
 @app.route('/customer/add', methods=['POST'])
 def add_customer():
+    '''Adds an entry into Customer table'''
     new_customer = Customers(CustomerID=request.json['CustomerID'], CompanyName=request.json['CompanyName'], ContactName=request.json['ContactName'], ContactTitle=request.json['ContactTitle'], Address=request.json['Address'],
                              City=request.json['City'], Region=request.json['Region'], PostalCode=request.json['PostalCode'], Fax=request.json['Fax'], Phone=request.json['Phone'], Country=request.json['Country'])
     db.session.add(new_customer)
@@ -121,6 +134,7 @@ def add_customer():
 
 @app.route('/customer/update/<id>', methods=['PUT'])
 def update_customer(id):
+    '''Updates Customer entries, takes CustomerID to select the entry that is to be updated'''
     customer = db.session.query(Customers).get(id)
     if customer == None:
         return "Record Not Found"
@@ -143,6 +157,7 @@ def update_customer(id):
 
 @app.route('/customer/remove/<id>', methods=['DELETE'])
 def remove_customer(id):
+    '''This removes the entry in the table by referencing with CustomerID'''
     customer = db.session.query(Customers).get(id)
     if customer == None:
         return "Record Not Found"
@@ -167,6 +182,7 @@ def order_history(id):
 
 @app.route('/', methods=['GET'])
 def base_route():
+    '''BaseRoute URL'''
     URL = "https://documenter.getpostman.com/view/12122001/T1DnidZm"
     return f"Welcome! This might not be the page you are looking for, learn the functionality of this API at {URL}"
 
