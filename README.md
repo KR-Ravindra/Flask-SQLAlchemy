@@ -99,23 +99,19 @@ The following RESTful API implements CURD operations on [`Northwind`](https://do
 ### Directory Tree:
 ```
 .
+├── API Documentation HTML
+│   ├── API Documentation.html
+...
 ├── app.py
 ├── extras
-│   ├── logos
 ...
-│   ├── mysql.sql
-│   ├── northwind-er-relationship.png
-│   ├── northwind files
-...
-│   ├── taskdetails.docx
-│   └── test.json
 ├── Pipfile
 ├── Pipfile.lock
 ├── README.md
-├── Sec1.txt
-└── Sec2.txt
+├── Section1.txt
+└── Section2.txt
 
-3 directories, 27 files
+9 directories, 43 files
 ```
 ### Tech Stack:
 
