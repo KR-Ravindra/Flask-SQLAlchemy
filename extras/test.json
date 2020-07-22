@@ -1,0 +1,26 @@
+{
+    "ProductID": 85,
+    "ProductName": "New Product",
+    "SupplierID": 25,
+    "CategoryID": 6,
+    "Discontinued": 0,
+    "QuantityPerUnit": "16 pies",
+    "UnitPrice": "17.45",
+    "UnitsInStock": 21,
+    "UnitsOnOrder": 0,
+    "ReorderLevel": 10
+}
+
+{
+    "CustomerID": "ABED",
+    "CompanyName": "CompanyNameXY",
+    "ContactName": "ContactNameYZ",
+    "ContactTitle": "ContactTitleZX",
+    "Address": "AddressQ",
+    "City": "CityA",
+    "Region": "RegionB",
+    "PostalCode": 544422,
+    "Fax": "030-2385236",
+    "Phone": "030-0074321",
+    "Country": "India"
+}
