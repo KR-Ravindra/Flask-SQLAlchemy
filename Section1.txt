@@ -1,0 +1,269 @@
+Section 1. Environment setup and data loading. (2)
+
+> DDL Statements along with Loading scripts for populating the tables.
+Remarks:
+For successful implementation of these loading scripts, import your csv files int /etc/mysql/northwind_db/  after creating the database.
+
+---------------------------------------------------------------------
+
+
+CREATE DATABASE northwind_db;
+
+USE northwind_db;
+
+
+CREATE TABLE Region (
+    RegionID int(11) NOT NULL,	
+ 	RegionDescription varchar(50), 	
+    PRIMARY KEY(RegionID)
+);
+
+
+LOAD DATA INFILE 'regions.csv'
+INTO TABLE Region
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+
+
+
+CREATE TABLE Territories (
+    TerritoryID varchar(20)  NOT NULL, 	
+ 	TerritoryDescription varchar(50), 	
+ 	RegionID int(11)  NOT NULL,
+    PRIMARY KEY(TerritoryID),
+	FOREIGN KEY(RegionID) REFERENCES Region(RegionID)
+);
+
+
+LOAD DATA INFILE 'territories.csv'
+INTO TABLE Territories
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+
+
+CREATE TABLE Employees (
+    EmployeeID int(11) NOT NULL, 	
+ 	LastName varchar(20), 	
+ 	FirstName varchar(10), 	
+ 	Title varchar(30), 	
+ 	TitleOfCourtesy varchar(25), 	
+ 	BirthDate datetime, 	
+	HireDate datetime, 	
+ 	Address varchar(60), 	
+ 	City varchar(15), 	
+ 	Region varchar(15), 	
+ 	PostalCode varchar(10), 	
+ 	Country varchar(15), 	
+ 	HomePhone varchar(24), 	
+ 	Extension varchar(4), 	
+ 	Notes mediumtext,
+	ReportsTo int(11) NOT NULL, 	
+ 	PhotoPath varchar(255), 	
+ 	Salary float,
+	PRIMARY KEY(EmployeeID)
+);
+
+LOAD DATA INFILE 'employees.csv'
+INTO TABLE Employees
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+ 	 	
+
+	
+
+
+
+
+
+CREATE TABLE EmployeeTerritories (
+    EmployeeID int(11) NOT NULL,
+ 	TerritoryID varchar(20) NOT NULL,
+	FOREIGN KEY(TerritoryID) REFERENCES Territories(TerritoryID),
+	FOREIGN KEY(EmployeeID) REFERENCES Employees(EmployeeID)
+);
+
+LOAD DATA INFILE 'employee-territories.csv'
+INTO TABLE EmployeeTerritories
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+
+
+CREATE TABLE Shippers (
+    	ShipperID int(11) NOT NULL, 	
+ 	CompanyName varchar(40), 	
+ 	Phone varchar(24),
+	PRIMARY KEY(ShipperID)
+);
+
+LOAD DATA INFILE 'shippers.csv'
+INTO TABLE Shippers
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+
+
+CREATE TABLE Customers (
+    CustomerID varchar(5) NOT NULL, 	
+ 	CompanyName varchar(40),	
+ 	ContactName varchar(30),	
+ 	ContactTitle varchar(30), 	
+ 	Address varchar(60), 	
+ 	City varchar(15), 	
+ 	Region varchar(15), 	
+ 	PostalCode varchar(10), 	
+ 	Country varchar(15), 	
+ 	Phone varchar(24), 	
+ 	Fax varchar(24),
+    PRIMARY KEY(CustomerID)
+);
+
+LOAD DATA INFILE 'customers.csv'
+INTO TABLE Customers
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+
+CREATE TABLE Orders (
+    OrderID int(11) NOT NULL, 	
+ 	CustomerID varchar(5) NOT NULL , 	
+ 	EmployeeID int(11) NOT NULL, 	
+ 	OrderDate datetime, 	
+	RequiredDate datetime, 	
+ 	ShippedDate datetime, 	
+ 	ShipVia int(11), 	
+ 	Freight decimal(10,4), 	
+ 	ShipName varchar(40), 	
+ 	ShipAddress varchar(60), 	
+ 	ShipCity varchar(15), 	
+ 	ShipRegion varchar(15), 	
+ 	ShipPostalCode varchar(10), 	
+ 	ShipCountry varchar(15),
+    PRIMARY KEY(OrderID),
+	FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID),
+	FOREIGN KEY(EmployeeID) REFERENCES Employees(EmployeeID),
+	FOREIGN KEY(ShipVia) REFERENCES Shippers(ShipperID)
+);
+
+
+LOAD DATA INFILE 'orders.csv'
+INTO TABLE Orders
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+
+
+CREATE TABLE Suppliers (
+    	SupplierID int(11) NOT NULL, 	
+ 	CompanyName varchar(40), 	
+ 	ContactName varchar(30), 	
+ 	ContactTitle varchar(30), 	
+ 	Address varchar(60), 	
+ 	City varchar(15), 	
+ 	Region varchar(15), 	
+ 	PostalCode varchar(10), 	
+ 	Country varchar(15), 	
+ 	Phone varchar(24), 	
+ 	Fax varchar(24), 	
+ 	HomePage mediumtext,
+    	PRIMARY KEY(SupplierID)
+);
+
+
+LOAD DATA INFILE 'suppliers.csv'
+INTO TABLE Suppliers
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+CREATE TABLE Categories (
+    	CategoryID int(11) NOT NULL, 	
+ 	CategoryName varchar(15), 	
+ 	Description mediumtext, 	
+    	PRIMARY KEY(CategoryID)
+);
+
+LOAD DATA INFILE 'categories.csv'
+INTO TABLE Categories
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+CREATE TABLE Products (
+    	ProductID int(11) NOT NULL, 	
+ 	ProductName varchar(40), 	
+ 	SupplierID int(11) NOT NULL,	
+ 	CategoryID int(11) NOT NULL, 	
+ 	QuantityPerUnit varchar(20), 	
+ 	UnitPrice decimal(10,4), 	
+ 	UnitsInStock smallint(2), 	
+ 	UnitsOnOrder smallint(2), 	
+ 	ReorderLevel smallint(2), 	
+ 	Discontinued tinyint(1), 	
+	PRIMARY KEY(ProductID),
+	FOREIGN KEY(SupplierID) REFERENCES Suppliers(SupplierID),
+	FOREIGN KEY(CategoryID) REFERENCES Categories(CategoryID)
+
+);
+
+
+
+LOAD DATA INFILE 'products.csv'
+INTO TABLE Products
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+
+CREATE TABLE OrderDetails (
+    	OrderID int(11) NOT NULL, 	
+ 	ProductID int(11) NOT NULL, 	
+ 	UnitPrice decimal(10,4), 	
+ 	Quantity smallint(2), 	
+ 	Discount double(8,0),
+	FOREIGN KEY(OrderID) REFERENCES Orders(OrderID),
+	FOREIGN KEY(ProductID) REFERENCES Products(ProductID)
+);
+
+
+
+LOAD DATA INFILE 'order-details.csv'
+INTO TABLE OrderDetails
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 LINES;
+
+
+
+CREATE TABLE CustomerDemographics (
+	CustomerTypeID varchar(10) NOT NULL,
+	CustomerDesc mediumtext,
+	PRIMARY KEY(CustomerTypeID)
+);
+
+Create TABLE CustomerCustomerDemo (
+	CustomerID varchar(5) NOT NULL,
+	CustomerTypeID varchar(10) NOT NULL,
+	PRIMARY KEY(CustomerID),
+	FOREIGN KEY(CustomerID) REFERENCES Customers(CustomerID),
+	FOREIGN KEY(CustomerTypeID) REFERENCES CustomerDemographics(CustomerTypeID)
+);

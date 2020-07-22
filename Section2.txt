@@ -1,0 +1,44 @@
+SECTION-2. Working with data and SQL (a)
+
+
+
+1) List all the products with cost above the average price of the products.
+
+	SELECT * FROM Products WHERE UnitPrice > (SELECT AVG(UnitPrice) FROM Products); 
+
+
+
+2) Give the identifier, name, and total sales of employees, ordered by the employee identifier for employees who have sold more than 70 different products.
+   
+	SELECT Orders.EmployeeID, Employees.LastName, Employees.FirstName, COUNT(OrderID) AS Total_sales FROM Orders JOIN Employees
+    	ON Orders.EmployeeID = Employees.EmployeeID GROUP BY Orders.EmployeeID HAVING Total_sales>70;
+
+
+
+3) Identify the customers who have active orders.
+
+	SELECT Customers.CustomerID, Customers.ContactName FROM Customers RIGHT OUTER JOIN Orders
+    	ON Customers.CustomerID = Orders.CustomerID WHERE ShippedDate IS NOT NULL;
+
+
+
+4) Find the customer with maximum number of orders. 
+
+	SELECT CustomerID, COUNT(OrderID) AS Number_of_Orders FROM Orders
+    	GROUP BY CustomerID ORDER BY COUNT(OrderID) desc LIMIT 1; 
+
+5) List all the employees who have sold at least one of the products ‘Gravad Lax’ or ‘Mishi Kobe Niku’.
+
+	
+	SELECT Employees.EmployeeID, Employees.LastName, Employees.FirstName, OrderDetails.ProductID, Products.ProductName, Orders.OrderID 
+	FROM OrderDetails LEFT OUTER JOIN Orders ON Orders.OrderID = OrderDetails.OrderID 
+    LEFT OUTER JOIN Employees ON Employees.EmployeeID = Orders.EmployeeID
+    LEFT OUTER JOIN Products ON Products.ProductID = OrderDetails.ProductID
+    WHERE ProductName = "Gravad Lax" OR ProductName = "Mishi Kobe Niku";
+
+
+ 
+    
+
+   
+
