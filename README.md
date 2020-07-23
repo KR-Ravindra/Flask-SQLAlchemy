@@ -1,4 +1,4 @@
-# Assignment Task - Intern@DataGorkr
+# Assignment Task - Intern@DataGrokr
 
 >  [Section 1](#1-environment-setup-and-data-loading) | [Section 2](#2-working-with-data-and-sql) | [Section 3](#3-restful-api---python-flask-and-sql-alchemy) | [Endpoints](#endpoints) | [API-Documentation](#api-documentation) | [Directory Tree](#directory-tree) | [TechStack](#tech-stack) | [Task Details](#task-details)
 
