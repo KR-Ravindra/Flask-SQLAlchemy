@@ -1,4 +1,4 @@
-# Assignment Task - Intern@DataGorkr
+# Assignment Task - Intern@DataGrokr
 
 >  [Section 1](#1-environment-setup-and-data-loading) | [Section 2](#2-working-with-data-and-sql) | [Section 3](#3-restful-api---python-flask-and-sql-alchemy) | [Endpoints](#endpoints) | [API-Documentation](#api-documentation) | [Directory Tree](#directory-tree) | [TechStack](#tech-stack) | [Task Details](#task-details)
 
@@ -119,9 +119,15 @@ The following RESTful API implements CURD operations on [`Northwind`](https://do
 
 ### Task Details:
 
+<<<<<<< HEAD
 Task details can be found at [TaskDetails](extras/taskdetails.docx).
 
 
 ### License:
 
 [CC-BY-SA-04.](extras/License.txt)
+||||||| fb9a08a
+Task details can be found at `./extras/taskdetails.docx`. 
+=======
+Task details can be found at `./extras/taskdetails.docx`. 
+>>>>>>> 594f32a5435adfb40badceb7c40133bcd6a899bf
