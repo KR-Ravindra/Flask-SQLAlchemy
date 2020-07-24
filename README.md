@@ -119,4 +119,9 @@ The following RESTful API implements CURD operations on [`Northwind`](https://do
 
 ### Task Details:
 
-Task details can be found at `./extras/taskdetails.docx`. 
+Task details can be found at [TaskDetails](extras/taskdetails.docx).
+
+
+### License:
+
+[CC-BY-SA-04.](extras/License.txt)
