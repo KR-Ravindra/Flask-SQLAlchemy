@@ -120,7 +120,6 @@ The following RESTful API implements CURD operations on [`Northwind`](https://do
 
 ### Task Details:
 
-<<<<<<< HEAD
 Task details can be found at [TaskDetails](extras/taskdetails.docx).
 
 
