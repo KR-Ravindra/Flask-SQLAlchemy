@@ -117,6 +117,7 @@ The following RESTful API implements CURD operations on [`Northwind`](https://do
 
  ![Image](extras/logos/flask.png) | ![Image](extras/logos/postman.png) | ![Image](./extras/logos/flask-sqlalchemy-logo.png) | ![Image](./extras/logos/mysql.png) 
 
+
 ### Task Details:
 
 <<<<<<< HEAD
@@ -126,8 +127,4 @@ Task details can be found at [TaskDetails](extras/taskdetails.docx).
 ### License:
 
 [CC-BY-SA-04.](extras/License.txt)
-||||||| fb9a08a
-Task details can be found at `./extras/taskdetails.docx`. 
-=======
-Task details can be found at `./extras/taskdetails.docx`. 
->>>>>>> 594f32a5435adfb40badceb7c40133bcd6a899bf
+
