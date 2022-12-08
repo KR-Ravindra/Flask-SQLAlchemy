@@ -112,9 +112,6 @@ The following RESTful API implements CURD operations on [`Northwind`](https://do
 9 directories, 44 files
 ```
 
-### Task Details:
-
-Task details can be found at [TaskDetails](extras/taskdetails.docx).
 
 
 ### License:
