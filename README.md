@@ -74,7 +74,6 @@ $ pipenv install
 
 The following RESTful API implements CURD operations on [`Northwind`](https://documenter.getpostman.com/view/12122001/T1DnidZm?version=latest) dataset. A detailed documentation is avaiable [here](https://documenter.getpostman.com/view/12122001/T1DnidZm).
 
-![Image](extras/logos/API.gif)
 
 
 ### Endpoints
